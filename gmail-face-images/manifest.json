@@ -1,0 +1,27 @@
+{
+    "manifest_version": 3,
+    "name": "Profile Image Replacer",
+    "version": "1.0",
+    "description": "Replaces Gmail profile images with a dummy image.",
+    "permissions": ["storage", "activeTab", "webRequest"],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "content_scripts": [
+      {
+        "matches": ["*://mail.google.com/*"],
+        "js": ["content.js"],
+        "run_at": "document_end"
+      }
+    ],
+    "host_permissions": [
+      "<all_urls>"
+    ],
+    "web_accessible_resources": [
+    {
+        "resources": ["dummy.png"],
+        "matches": ["*://mail.google.com/*"]
+    }
+    ]
+  }
+  
