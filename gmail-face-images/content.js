@@ -2,11 +2,16 @@ function replaceProfileImages() {
     // Get all the profile images
     const profileImages = document.querySelectorAll('img.ajn[jid]');
 
-    // Replace each image's src with the web-accessible dummy image
     profileImages.forEach(img => {
-        img.src = chrome.runtime.getURL('dummy.png');
+        const email = img.getAttribute('jid');
+        chrome.runtime.sendMessage({ action: "getImageBlob", email: email }, response => {
+            if (response && response.imageBlob) {
+                img.src = response.imageBlob;
+            }
+        });
     });
 }
 
-// Continuously check and replace images every 2 seconds
-setInterval(replaceProfileImages, 2000);
+// Use a MutationObserver to detect changes in the DOM
+const observer = new MutationObserver(replaceProfileImages);
+observer.observe(document.body, { childList: true, subtree: true });
