@@ -1,3 +1,3 @@
-# gmail-face-images
+# Gmail Face Images
 
-This version of the extension just replaces all Gmail images with a dummy image. This is proof of concept. The next version will replace the images with the faces of the people in the email.
+This extension allows you to import previously exported student data (with the [Penn Class List Scraper](https://github.com/jlumbroso/penn-classlist-scraper) for instance, or manually produced), and have these images substituted to missing images in Gmail.
